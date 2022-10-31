@@ -5,7 +5,12 @@ const ProductAbl = require("../../abl/product-abl.js");
 class ProductController {
 
   getProductChecked(ucEnv) {
-    return ProductAbl.getProductChecked(ucEnv.getUri().getAwid(), ucEnv.getDtoIn());
+    return ProductAbl.getProductChecked(
+      ucEnv.getUri().getAwid(),
+      ucEnv.getDtoIn(),
+      ucEnv.getSession(),
+      ucEnv.getAuthorizationResult()
+    );
   }
   getProduct(ucEnv) {
     return ProductAbl.getProduct(

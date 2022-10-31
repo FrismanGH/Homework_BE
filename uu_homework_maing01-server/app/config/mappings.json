@@ -40,6 +40,26 @@
         "realization": "api/controllers/ProductController.getProductChecked",
         "httpMethod": "POST",
         "type": "CMD"
+      },
+      "getListAddUserToList": {
+        "realization": "api/controllers/ListController.getListAddUserToList",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "getListRenameList": {
+        "realization": "api/controllers/ListController.getListRenameList",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "getListCreate": {
+        "realization": "api/controllers/ListController.getListCreate",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "getListRemove": {
+        "realization": "api/controllers/ListController.getListRemove",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }

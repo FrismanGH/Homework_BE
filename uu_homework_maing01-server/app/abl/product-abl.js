@@ -11,7 +11,7 @@ const WARNINGS = {
   },
 };
 
-//z kontroleru to linkuje sem, validovat vstup, vytvorir error map, vratit co chces vratit,
+
 class ProductAbl {
   constructor() {
     this.validator = Validator.load();
