@@ -3,7 +3,7 @@ const { UseCaseError } = require("uu_appg01_server").AppServer;
 
 class ListMainUseCaseError extends UseCaseError {
   static get ERROR_PREFIX() {
-    return "uu-homework-main/"; //mozna product
+    return "uu-homework-main/"; 
   }
 
   constructor(dtoOut, paramMap = {}, cause = null) {

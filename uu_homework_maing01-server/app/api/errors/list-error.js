@@ -13,6 +13,27 @@ const GetList = {
       this.message = "DtoIn is not valid.";
     }
   },
+  GetDaoFailed: class extends ListMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${GetList.UC_CODE}GetDaoFailed`;
+      this.message = "Dao Failed";
+    }
+  },
+  ShoppingListDoesNotExist: class extends ListMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${GetList.UC_CODE}ShoppingListDoesNotExist`;
+      this.message = "Shopping List Does Not Exist";
+    }
+  },
+  NoPermission: class extends ListMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${GetList.UC_CODE}NoPermission`;
+      this.message = "You dont have permission";
+    }
+  },
 };
 
 const GetListAddUserToList = {
@@ -47,6 +68,27 @@ const GetListCreate = {
       super(...arguments);
       this.code = `${GetListCreate.UC_CODE}invalidDtoIn`;
       this.message = "DtoIn is not valid.";
+    }
+  },
+  GetDaoFailed: class extends ListMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${GetList.UC_CODE}GetDaoFailed`;
+      this.message = "Dao Failed";
+    }
+  },
+  ShoppingListDoesNotExist: class extends ListMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${GetList.UC_CODE}ShoppingListDoesNotExist`;
+      this.message = "Shopping List Does Not Exist";
+    }
+  },
+  NoPermission: class extends ListMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${GetList.UC_CODE}NoPermission`;
+      this.message = "You dont have permission";
     }
   },
 };

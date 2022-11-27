@@ -4,8 +4,8 @@
       "type": "uuAppObjectStore",
       "realization": "MongoDB",
       "schemaMap": {
-        "homeworkMain": {
-          "realization": "dao/HomeworkMainMongo"
+        "listMain": {
+          "realization": "dao/ListMongo"
         }
       }
     }
