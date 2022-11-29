@@ -15,7 +15,7 @@ class ListMongo extends UuObjectDao {
       awid: awid,
       name: dtoIn.name,
       members: [],
-      items: [],
+      items: dtoIn.items,
       owner: dtoIn.owner,
     };
     return await super.insertOne(filter);

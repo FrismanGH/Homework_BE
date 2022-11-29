@@ -32,13 +32,13 @@ class ListAbl {
 
     shoppingList = await this.dao.get(awid, { id: dtoIn.id });
     if (!(shoppingList.owner === uuIdentity || authorizationResult.getAuthorizedProfiles().includes("Authorities"))) {
-      throw new Errors.GetList.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListRemove.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
     }
 
     try {
       await this.dao.remove(awid, dtoIn);
     } catch {
-      throw new Errors.GetList.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListRemove.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
     }
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
@@ -65,10 +65,10 @@ class ListAbl {
       await this.dao.create(awid, dtoIn);
       shoppingList = await this.dao.get(awid, { name: dtoIn.name });
     } catch {
-      throw new Errors.GetList.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListCreate.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
     }
     if (!shoppingList) {
-      throw new Errors.GetList.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListCreate.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
     }
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
@@ -91,7 +91,7 @@ class ListAbl {
 
     shoppingList = await this.dao.get(awid, { id: dtoIn.id });
     if (!(shoppingList.owner === uuIdentity || authorizationResult.getAuthorizedProfiles().includes("Authorities"))) {
-      throw new Errors.GetList.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListRenameList.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
     }
     shoppingList.name = dtoIn.name;
     await this.dao.update(awid, shoppingList);
@@ -99,10 +99,10 @@ class ListAbl {
     try {
       shoppingList = await this.dao.get(awid, { id: dtoIn.id });
     } catch {
-      throw new Errors.GetList.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListRenameList.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
     }
     if (!shoppingList) {
-      throw new Errors.GetList.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListRenameList.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
     }
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
@@ -126,7 +126,7 @@ class ListAbl {
     shoppingList = await this.dao.get(awid, { id: dtoIn.id });
     console.log(shoppingList);
     if (!(shoppingList.owner === uuIdentity || authorizationResult.getAuthorizedProfiles().includes("Authorities"))) {
-      throw new Errors.GetList.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListAddUserToList.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
     }
 
     shoppingList.members.push(dtoIn.members);
@@ -135,10 +135,10 @@ class ListAbl {
     try {
       shoppingList = await this.dao.get(awid, { id: dtoIn.id });
     } catch {
-      throw new Errors.GetList.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListAddUserToList.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
     }
     if (!shoppingList) {
-      throw new Errors.GetList.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
+      throw new Errors.GetListAddUserToList.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
     }
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
@@ -176,6 +176,77 @@ class ListAbl {
       )
     ) {
       throw new Errors.GetList.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
+    }
+
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    dtoOut.shoppingList = shoppingList;
+    return dtoOut;
+  }
+
+  async getProductChecked(awid, dtoIn) {
+    let validationResult = this.validator.validate("getProductCheckedDtoInType", dtoIn);
+
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.getUnsupportedKeys.code,
+      Errors.GetProductChecked.InvalidDtoIn
+    );
+    let shoppingList;
+    let dtoOut = {};
+    const uuIdentity = session.getIdentity().getUuIdentity();
+
+    shoppingList = await this.dao.get(awid, { id: dtoIn.id });
+    if (!(shoppingList.owner === uuIdentity || authorizationResult.getAuthorizedProfiles().includes("Authorities"))) {
+      throw new Errors.GetProductChecked.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
+    }
+    shoppingList.bought = true;
+    shoppingList.bought = dtoIn.bought; //jak změnit na checked?
+    await this.dao.update(awid, shoppingList);
+
+    try {
+      shoppingList = await this.dao.get(awid, { id: dtoIn.id });
+    } catch {
+      throw new Errors.GetProductChecked.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
+    }
+    if (!shoppingList) {
+      throw new Errors.GetProductChecked.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
+    }
+
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    dtoOut.shoppingList = shoppingList;
+    return dtoOut;
+  }
+
+  async getProduct(awid, dtoIn) {
+    let validationResult = this.validator.validate("getProductDtoInType", dtoIn);
+
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.getUnsupportedKeys.code,
+      Errors.GetProduct.InvalidDtoIn
+    );
+    let product;
+    let dtoOut = {};
+    const uuIdentity = session.getIdentity().getUuIdentity();
+    try {
+      product = await this.dao.get(awid, { id: dtoIn.id });
+    } catch {
+      throw new Errors.GetProduct.GetDaoFailed({ uuAppErrorMap }, { id: dtoIn.id });
+    }
+    if (!product) {
+      throw new Errors.GetProduct.ShoppingListDoesNotExist({ uuAppErrorMap }, { id: dtoIn.id });
+    }
+
+    if (
+      !(
+        shoppingList.owner === uuIdentity ||
+        shoppingList.members.include === uuIdentity ||
+        authorizationResult.getAuthorizedProfiles().includes("Authorities")
+      )
+    ) {
+      throw new Errors.GetProduct.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
     }
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
