@@ -27,31 +27,31 @@
       },
       "getProduct": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["user"]
       },
       "getList": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["user"]
       },
       "getProductChecked": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["user"]
       },
       "getListAddUserToList": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["ShoppingListOwner"]
       },
       "getListRenameList": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["ShoppingListOwner"]
       },
       "getListCreate": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["User"]
       },
       "getListRemove": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["ShoppingListOwner"]
       }
     }
   }

@@ -201,7 +201,6 @@ class ListAbl {
       throw new Errors.GetProductChecked.NoPermission({ uuAppErrorMap }, { id: dtoIn.id });
     }
     shoppingList.bought = true;
-    shoppingList.bought = dtoIn.bought; //jak změnit na checked?
     await this.dao.update(awid, shoppingList);
 
     try {
