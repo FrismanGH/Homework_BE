@@ -6,6 +6,9 @@
       "schemaMap": {
         "listMain": {
           "realization": "dao/ListMongo"
+        },
+        "homeworkMain": {
+          "realization": "dao/HomeworkMainMongo"
         }
       }
     }

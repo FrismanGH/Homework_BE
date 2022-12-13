@@ -1,0 +1,25 @@
+{
+    "createData": [
+      { "name": "Nákupní seznam 1" },
+      { "name": "Nákupní seznam 2" },
+      { "name": "Nákupní seznam 3" }
+    ],
+    "itemsData": [
+      {
+        "name": "Banány",
+        "measure": "g",
+        "amount": "500"
+      },
+      {
+        "name": "Jablka",
+        "measure": "kus",
+        "amount": "10"
+      },
+      {
+        "name": "Piko",
+        "measure": "kg",
+        "amount": "2"
+      }
+    ],
+    "users": ["34-12-23", "25-23-16"]
+  }
